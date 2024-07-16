@@ -16,8 +16,6 @@ services:
       - openduty-postgres
       - openduty-redis
    
-   
-
 
   openduty-postgres:
     container_name: openduty-postgres
@@ -26,3 +24,13 @@ services:
     volumes:
       - openduty_postgres_data:/var/lib/postgresql/data
     environment:
+
+  openduty-redis:
+    container_name: openduty-redis
+    restart: always
+    build:
+      context: ./devops/docker/redis/
+    volumes:
+      - openduty_redis_data:/data
+    ports:
+      - 6379:6379
